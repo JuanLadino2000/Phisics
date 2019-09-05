@@ -1,9 +1,7 @@
-
-# coding: utf-8
-
-
 import numpy as np
-class particle:
+
+GRAV = 1
+class  Particle:
     def __init__(self,name,x0,y0,v0,alpha0,m0=1,t0=0.):
         self.label = name
         self.m = m0
@@ -18,6 +16,18 @@ class particle:
         strng += "r = ({:.4f},{:.4f})\n".format(self.x, self.y)
         strng += "v = ({:.4f},{:.4f})\n".format(self.vx,self.vy)
         return strng
+
+    def step(self,dt):
+        self.x = self.x + self.vx*dt
+        self.y = self.y + self.vy*dt
+        self.vx = self.vx
+        self.vy = self.vy +(-GRAV*dt)
+        self.t = self.t + dt
+
+    def get_state(self):
+        return self.x, self.y, self.vx, self.vy, self.t
+
+#if __name__ == "__main__":
 
     
 
